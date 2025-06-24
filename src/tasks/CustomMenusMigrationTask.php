@@ -36,20 +36,22 @@ class CustomMenusMigrationTask extends MigrationTask
                 $config->Menus()->add($menu);
                 DB::alteration_message('Re-Linked Custom Menu to SiteConfig', 'changed');
             }
+
             foreach ($menu->Pages() as $page) {
                 $link = CustomMenuLink::create([
                     "BaseClass" => SiteTree::class,
                     "ObjectID" => $page->ID,
                     "MenuID" => $menu->ID
-                ]);
-                    
+                ]);                    
                 $link->write();
-                $menu->Pages()->remove($page);
+
+                $menu
+                    ->Pages()
+                    ->remove($page);
                 
                 $i++;
             }
         }
-        $config->write();
 
         $this->log(sprintf(
             'Migrated %s menu page links.',

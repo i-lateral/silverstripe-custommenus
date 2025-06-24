@@ -62,3 +62,4 @@ The following is a log of changes for the Custom Menus module
 
 * SS4 | SS5 support
 * Migrate to DFT
+* Remove uneeded SiteConfig write in migration task

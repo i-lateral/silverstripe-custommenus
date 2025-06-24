@@ -109,8 +109,7 @@ class CustomMenuHolder extends DataObject implements PermissionProvider
             $menu->flushCache();
             DB::alteration_message("Footer menu created", "created");
         }
-
-            
+    
         // Run migration task (if needed)
         $migrate = CustomMenusMigrationTask::config()->run_during_dev_build;
 
